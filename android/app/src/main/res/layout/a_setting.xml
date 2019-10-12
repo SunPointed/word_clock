@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/cb_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cb_score"
+                android:layout_alignBottom="@+id/cb_score"
+                android:layout_toRightOf="@+id/cb_score"
+                android:gravity="center"
+                android:text="@string/word_clock_score_hint" />
+
+            <CheckBox
+                android:id="@+id/cb_shift"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cb_score"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cb_shift"
+                android:layout_alignBottom="@+id/cb_shift"
+                android:layout_toRightOf="@+id/cb_shift"
+                android:gravity="center"
+                android:text="@string/word_clock_shift_hint" />
+
+            <CheckBox
+                android:id="@+id/cb_circle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cb_shift"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/cb_circle"
+                android:layout_alignBottom="@+id/cb_circle"
+                android:layout_toRightOf="@+id/cb_circle"
+                android:gravity="center"
+                android:text="@string/word_clock_circle_hint" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:text="@string/run_on_background_hint" />
+
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/run_on_background" />
+
+        <Button
+            android:id="@+id/btn_clock"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/preview_clock" />
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/close" />
+    </LinearLayout>
+
+</RelativeLayout>
