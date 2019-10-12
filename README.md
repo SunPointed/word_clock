@@ -8,8 +8,6 @@ when run on android device, its can run like a screen protection program
 
 its run like below
 
-<figure class="video_container">
-    <video id="video" controls="true" allowfullscreen="true">
-        <source id="mp4" src="word_clock.mp4" type="video/mp4">
-    </video>
-</figure>
+<div align=center>
+    <img src="https://github.com/SunPointed/word_clock/blob/master/word_clock.gif" alt="show">
+</div>
