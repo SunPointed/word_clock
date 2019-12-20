@@ -3,8 +3,19 @@
     <string name="run_on_background">开始运行</string>
     <string name="preview_clock">预览时钟</string>
     <string name="run_on_background_hint">打开后台运行后，通知栏会显示图标，Word Clock会在锁屏时显示(注意更改配置后，需要先关闭再重新启动)</string>
-    <string name="close">关闭程序</string>
+    <string name="close">关闭时钟</string>
     <string name="word_clock_score_hint">24小时制</string>
     <string name="word_clock_shift_hint">采用变换</string>
     <string name="word_clock_circle_hint">圆形</string>
+    <string name="setting">设置</string>
+    <string name="clock_attribute">时钟属性</string>
+    <string name="permission_request">权限申请</string>
+    <string name="reject">拒绝</string>
+    <string name="permission_request_hint">锁屏显示需要权限保证尽可能保持运行</string>
+    <string name="confirm">确定</string>
+    <string name="color_choose">选择颜色</string>
+    <string name="cancel">取消</string>
+    <string name="text_color">显示文字颜色</string>
+    <string name="text_bg_color">背景文字颜色</string>
+    <string name="bg_color">背景色</string>
 </resources>

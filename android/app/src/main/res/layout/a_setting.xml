@@ -3,97 +3,158 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-        <RelativeLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp">
 
-            <CheckBox
-                android:id="@+id/cb_score"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:text="@string/setting"
+                android:textColor="@color/black"
+                android:textSize="@dimen/t_16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/cb_score"
-                android:layout_alignBottom="@+id/cb_score"
-                android:layout_toRightOf="@+id/cb_score"
-                android:gravity="center"
-                android:text="@string/word_clock_score_hint" />
+                android:text="@string/clock_attribute"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/t_12sp" />
 
-            <CheckBox
-                android:id="@+id/cb_shift"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cb_score"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/cb_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cb_score"
+                    android:layout_alignBottom="@+id/cb_score"
+                    android:layout_toEndOf="@+id/cb_score"
+                    android:layout_toRightOf="@+id/cb_score"
+                    android:gravity="center"
+                    android:text="@string/word_clock_score_hint" />
+
+                <CheckBox
+                    android:id="@+id/cb_shift"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_score"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cb_shift"
+                    android:layout_alignBottom="@+id/cb_shift"
+                    android:layout_toEndOf="@+id/cb_shift"
+                    android:layout_toRightOf="@+id/cb_shift"
+                    android:gravity="center"
+                    android:text="@string/word_clock_shift_hint" />
+
+                <CheckBox
+                    android:id="@+id/cb_circle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_shift"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginTop="5dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/cb_circle"
+                    android:layout_alignBottom="@+id/cb_circle"
+                    android:layout_toEndOf="@+id/cb_circle"
+                    android:layout_toRightOf="@+id/cb_circle"
+                    android:gravity="center"
+                    android:text="@string/word_clock_circle_hint" />
+
+                <Button
+                    android:id="@+id/btn_back_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_circle"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/bg_color"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/t_10sp" />
+
+                <Button
+                    android:id="@+id/btn_default_time_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_circle"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/btn_back_color"
+                    android:text="@string/text_bg_color"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/t_10sp" />
+
+                <Button
+                    android:id="@+id/btn_cur_time_color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cb_circle"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/btn_default_time_color"
+                    android:text="@string/text_color"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="@dimen/t_10sp" />
+
+            </RelativeLayout>
+
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/cb_shift"
-                android:layout_alignBottom="@+id/cb_shift"
-                android:layout_toRightOf="@+id/cb_shift"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/run_on_background_hint" />
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/word_clock_shift_hint" />
+                android:text="@string/run_on_background" />
 
-            <CheckBox
-                android:id="@+id/cb_circle"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/btn_clock"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/cb_shift"
-                android:layout_alignParentLeft="true"
-                android:layout_marginTop="5dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/cb_circle"
-                android:layout_alignBottom="@+id/cb_circle"
-                android:layout_toRightOf="@+id/cb_circle"
                 android:gravity="center"
-                android:text="@string/word_clock_circle_hint" />
+                android:text="@string/preview_clock" />
 
-        </RelativeLayout>
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/close" />
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:text="@string/run_on_background_hint" />
-
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/run_on_background" />
-
-        <Button
-            android:id="@+id/btn_clock"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/preview_clock" />
-
-        <Button
-            android:id="@+id/btn_close"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="@string/close" />
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

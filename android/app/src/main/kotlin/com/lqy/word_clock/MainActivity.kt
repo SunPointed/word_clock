@@ -7,13 +7,10 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View.*
 import android.view.WindowManager
 import io.flutter.app.FlutterActivity
 import io.flutter.plugins.GeneratedPluginRegistrant
-import io.flutter.plugin.common.MethodCall
-import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel
 
 
@@ -23,6 +20,9 @@ class MainActivity : FlutterActivity() {
         const val SCORE = "SCORE"
         const val SHIFT = "SHIFT"
         const val CIRCLE = "CIRCLE"
+        const val BACKGROUND_COLOR = "BACKGROUND_COLOR"
+        const val BACK_TEXT_COLOR = "BACK_TEXT_COLOR"
+        const val TEXT_COLOR = "TEXT_COLOR"
     }
 
     private val mReceiver = object : BroadcastReceiver() {
@@ -59,18 +59,13 @@ class MainActivity : FlutterActivity() {
             window.navigationBarColor = Color.BLACK
         }
         super.onCreate(savedInstanceState)
-        Utils.hideSystemUI(this)
+        Util.hideSystemUI(this)
         register()
         GeneratedPluginRegistrant.registerWith(this)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             window.decorView.setOnSystemUiVisibilityChangeListener {
                 if ((it and SYSTEM_UI_FLAG_FULLSCREEN) == 0) {
-                    window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            or SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            or SYSTEM_UI_FLAG_FULLSCREEN
-                            or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+                    Util.hideSystemUI(this)
                 }
             }
         }
@@ -81,10 +76,13 @@ class MainActivity : FlutterActivity() {
         MethodChannel(flutterView, CHANNEL).setMethodCallHandler { call, result ->
             if (call.method == "getSpSetting") {
                 val sp = getSharedPreferences(packageName, Context.MODE_PRIVATE)
-                result.success(mutableListOf<Boolean>().apply {
+                result.success(mutableListOf<Any>().apply {
                     add(sp.getBoolean(SCORE, true))
                     add(sp.getBoolean(SHIFT, true))
                     add(sp.getBoolean(CIRCLE, true))
+                    add(sp.getInt(BACKGROUND_COLOR, 0xff000000.toInt()))
+                    add(sp.getInt(BACK_TEXT_COLOR, 0x88ffffff.toInt()))
+                    add(sp.getInt(TEXT_COLOR, 0xffffffff.toInt()))
                 })
             } else {
                 result.notImplemented()
@@ -94,14 +92,7 @@ class MainActivity : FlutterActivity() {
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            window.decorView.systemUiVisibility = (SYSTEM_UI_FLAG_LAYOUT_STABLE
-                    or SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    or SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    or SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or SYSTEM_UI_FLAG_FULLSCREEN
-                    or SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        }
+        Util.hideSystemUI(this)
     }
 
     override fun onDestroy() {

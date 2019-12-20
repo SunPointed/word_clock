@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="t_16sp">16sp</dimen>
+    <dimen name="t_12sp">12sp</dimen>
+    <dimen name="t_9sp">9sp</dimen>
+    <dimen name="t_10sp">10sp</dimen>
+</resources>

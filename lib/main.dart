@@ -19,6 +19,9 @@ class MyAppState extends State<MyApp> {
   bool _isScore = true;
   bool _isShift = true;
   bool _isCircle = true;
+  Color _backgroundColor;
+  Color _backTextColor;
+  Color _textColor;
 
   @override
   void initState() {
@@ -43,8 +46,14 @@ class MyAppState extends State<MyApp> {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:
-          WordClock(isScore: _isScore, isShift: _isShift, isCircle: _isCircle),
+      home: WordClock(
+        isScore: _isScore,
+        isShift: _isShift,
+        isCircle: _isCircle,
+        backgroundColor: _backgroundColor,
+        backTextColor: _backTextColor,
+        textColor: _textColor,
+      ),
     );
   }
 
@@ -52,11 +61,14 @@ class MyAppState extends State<MyApp> {
     try {
       final List<Object> result = await platform.invokeMethod('getSpSetting');
       print(result);
-      if (result.length == 3) {
+      if (result.length == 6) {
         setState(() {
           _isScore = result[0] as bool;
           _isShift = result[1] as bool;
           _isCircle = result[2] as bool;
+          _backgroundColor = Color(result[3] as int);
+          _backTextColor = Color(result[4] as int);
+          _textColor = Color(result[5] as int);
         });
       }
     } on PlatformException catch (e) {

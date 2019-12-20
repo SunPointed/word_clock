@@ -10,6 +10,9 @@ class WordClock extends StatefulWidget {
   final int shiftTimeSecond;
   final bool isCircle;
   final bool isScore;
+  final Color backgroundColor;
+  final Color backTextColor;
+  final Color textColor;
 
   const WordClock(
       {Key key,
@@ -17,7 +20,10 @@ class WordClock extends StatefulWidget {
       this.shiftCycleSecond = 30,
       this.shiftTimeSecond = 3,
       this.isCircle = true,
-      this.isScore = true})
+      this.isScore = true,
+      this.backgroundColor = Colors.black,
+      this.backTextColor = Colors.grey,
+      this.textColor = Colors.white})
       : super(key: key);
 
   @override
@@ -110,9 +116,16 @@ class WordClockState extends State<WordClock> {
       color: Colors.white,
       child: CustomPaint(
           painter: _isTrans
-              ? TransPainter(_transPercent, _isCircle, _preDateTime)
+              ? TransPainter(_transPercent, _isCircle, _preDateTime,
+                  backgroundColor: widget.backgroundColor,
+                  backTextColor: widget.backTextColor,
+                  textColor: widget.textColor)
               : WordClockPainter(_preDateTime,
-                  isScore: _isScore, isCircle: _isCircle)),
+                  isScore: _isScore,
+                  isCircle: _isCircle,
+                  backgroundColor: widget.backgroundColor,
+                  backTextColor: widget.backTextColor,
+                  textColor: widget.textColor)),
     );
   }
 
@@ -138,8 +151,9 @@ class TransPainter extends CustomPainter {
   double _animationPercent;
   bool _isCircle2Rect;
   Color _backgroundColor;
-  TextPainter _textPainter;
+  Color _backTextColor;
   Color _textColor;
+  TextPainter _textPainter;
   bool _isScore;
   bool _isCircle;
   double _secondsOffsetAngle;
@@ -147,12 +161,14 @@ class TransPainter extends CustomPainter {
 
   TransPainter(this._animationPercent, this._isCircle2Rect, this._dateTime,
       {Color backgroundColor,
+      Color backTextColor,
       Color textColor,
       double secondsOffsetAngle = 0.0,
       bool isScore = false,
       bool isCircle = true}) {
-    _backgroundColor = backgroundColor == null ? Colors.black : backgroundColor;
-    _textColor = textColor == null ? Colors.white : textColor;
+    _backgroundColor = backgroundColor ?? Colors.black;
+    _backTextColor = backTextColor ?? Colors.grey;
+    _textColor = textColor ?? Colors.white;
     _textPainter = TextPainter(
         textAlign: TextAlign.center, textDirection: TextDirection.ltr);
     _isScore = isScore;
@@ -169,7 +185,7 @@ class TransPainter extends CustomPainter {
     double itemLen = (minLen / 2) / 6;
     double fontSize = _getFontSize(itemLen / 4);
     TextStyle style = TextStyle(color: _textColor, fontSize: fontSize);
-    TextStyle darkStyle = TextStyle(color: Colors.grey, fontSize: fontSize);
+    TextStyle darkStyle = TextStyle(color: _backTextColor, fontSize: fontSize);
     if (RECT_POS.length == 0) {
       _calculateRectPosition(
           size, dateNow, minLen, itemLen, fontSize, style, darkStyle);
@@ -322,6 +338,7 @@ class TransPainter extends CustomPainter {
 class WordClockPainter extends CustomPainter {
   Color _backgroundColor;
   TextPainter _textPainter;
+  Color _backTextColor;
   Color _textColor;
   bool _isScore;
   bool _isCircle;
@@ -330,12 +347,14 @@ class WordClockPainter extends CustomPainter {
 
   WordClockPainter(this._dateTime,
       {Color backgroundColor,
+      Color backTextColor,
       Color textColor,
       double secondsOffsetAngle = 0.0,
       bool isScore = false,
       bool isCircle = true}) {
-    _backgroundColor = backgroundColor == null ? Colors.black : backgroundColor;
-    _textColor = textColor == null ? Colors.white : textColor;
+    _backgroundColor = backgroundColor ?? Colors.black;
+    _backTextColor = backTextColor ?? Colors.grey;
+    _textColor = textColor ?? Colors.white;
     _textPainter = TextPainter(
         textAlign: TextAlign.center, textDirection: TextDirection.ltr);
     _isScore = isScore;
@@ -356,7 +375,8 @@ class WordClockPainter extends CustomPainter {
       double fontSize = _getFontSize(itemLen / 4);
       double len = itemLen;
       TextStyle style = TextStyle(color: _textColor, fontSize: fontSize);
-      TextStyle darkStyle = TextStyle(color: Colors.grey, fontSize: fontSize);
+      TextStyle darkStyle =
+          TextStyle(color: _backTextColor, fontSize: fontSize);
       len += Util.drawCircle(Util.MONTHS, dateNow.month - 1, Offset(len, 0),
           canvas, _textPainter, style, darkStyle);
 
@@ -389,7 +409,8 @@ class WordClockPainter extends CustomPainter {
       double itemLen = (minLen / 2) / 6;
       double fontSize = _getFontSize(itemLen / 4);
       TextStyle style = TextStyle(color: _textColor, fontSize: fontSize);
-      TextStyle darkStyle = TextStyle(color: Colors.grey, fontSize: fontSize);
+      TextStyle darkStyle =
+          TextStyle(color: _backTextColor, fontSize: fontSize);
 
       double padding = fontSize * 3;
       double drawWidth = minLen - padding * 2;

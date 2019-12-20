@@ -5,6 +5,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.drawable.Icon
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
@@ -95,6 +96,7 @@ class ClockService : Service() {
                     .setContentTitle("word clock")
                     .setOngoing(true)
                     .setSmallIcon(R.mipmap.ic_launcher)
+                    .setLargeIcon(Icon.createWithResource(this, R.mipmap.ic_launcher))
                     .setContentIntent(PendingIntent.getBroadcast(applicationContext, 0, intent, 0))
                     .build()
         } else {
